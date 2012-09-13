@@ -1,0 +1,11 @@
+Package: emme2
+Version: 0.8.2
+Date: 2012-09-13
+Title: Read and Write to an EMME/2 databank
+Author: Ben Stabler <benstabler@yahoo.com>
+Maintainer: Ben Stabler <benstabler@yahoo.com>
+Depends: R (>= 1.6.0), graphics, reshape2
+Description: This package includes functions to read and write
+	to an EMME/2 databank
+License: GPL
+Packaged: Tue Aug 14 10:16:17 2007; Ben Stabler
