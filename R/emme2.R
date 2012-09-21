@@ -743,6 +743,7 @@ MFFetch <- function(databank, matrixname, varlongname=NULL, valsonly=NULL) {
     dirdf <- data.frame(mat.dir$mf, stringsAsFactors=FALSE)
     # Sometimes this won't be unique, hense the "[1]"
     varlongname <- dirdf[dirdf$name==matrixname, 2][1]
+    varlongname <- gsub("\\s+", "_", varlongname)
   }
   
   names(mf) <- c("orig", "dest", varlongname)
