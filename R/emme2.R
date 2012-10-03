@@ -715,16 +715,27 @@ get.emme2.time <- function(timestamp){
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Batch read a list of emme matrix names (short version), and return a merged data.frame
 # DANGER: This function is not exactly memory-efficient. Don't attempt on low-memory systems without refactoring.
-MFBatchFetch <- function(databank, matrixlist) {
+MFBatchFetch <- function(databank, matrixlist, useshortnames=FALSE) {
   # Fetch the first matrix off the list
   # (assumes first matrix is representative of the those following)
   print(matrixlist[1])
-  df <- MFFetch(databank, matrixlist[1])
+  
+  if(useshortnames==TRUE){
+  df <- MFFetch(databank, matrixlist[1],varlongname=matrixlist[1])
+  }else{
+    MFFetch(databank, matrixlist[1])
+  }
   
   # merging as opposed to cbind is slow, but enforces some sort of sanity checking
   for(m in matrixlist[-1]) {
     print(m)
-    new <- MFFetch(databank, m)
+    
+    if(useshortnames==TRUE){
+      new <- MFFetch(databank, m, varlongname=m)
+    } else {
+      new <- MFFetch(databank, m)
+    }
+    
     df <- merge(df, new, by=intersect(names(df), names(new)))
   }
   return(df)
