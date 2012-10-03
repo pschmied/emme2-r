@@ -721,9 +721,9 @@ MFBatchFetch <- function(databank, matrixlist, useshortnames=FALSE) {
   print(matrixlist[1])
   
   if(useshortnames==TRUE){
-  df <- MFFetch(databank, matrixlist[1],varlongname=matrixlist[1])
+    df <- MFFetch(databank, matrixlist[1],varlongname=matrixlist[1])
   }else{
-    MFFetch(databank, matrixlist[1])
+    df <- MFFetch(databank, matrixlist[1])
   }
   
   # merging as opposed to cbind is slow, but enforces some sort of sanity checking
